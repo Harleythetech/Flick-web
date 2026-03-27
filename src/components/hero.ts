@@ -2,7 +2,7 @@ import prodsample2 from "../assets/Product-Sample2.png";
 
 export function Hero(): string {
   return `
-<div class="relative w-full h-[100dvh] overflow-hidden bg-[#101010] font-sans">
+<div id="hero-section" class="relative w-full h-[100dvh] overflow-hidden bg-[#101010] font-sans">
 
   <img 
     src="${prodsample2}" 
