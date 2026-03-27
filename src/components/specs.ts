@@ -3,16 +3,16 @@ export function Specs(): string {
 <section class="bg-[#101010] text-white py-24 relative z-20 border-t border-white/5">
   <div class="max-w-7xl mx-auto px-6 lg:px-16">
     
-    <div class="mb-16">
+    <div class="mb-16" data-animate="fade-up">
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4">Under the Hood</h2>
       <p class="text-gray-400 text-lg max-w-2xl">
         The granular details and architectural decisions that make Flick Player a bit-perfect powerhouse.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16" data-animate-stagger="[data-animate-child]" data-animate-stagger-delay="0.15" data-animate-duration="0.6">
       
-      <div>
+      <div data-animate-child>
         <h3 class="text-lg font-bold mb-6 tracking-wide text-white border-b border-white/10 pb-3">Audio Pipeline & DSP</h3>
         <ul class="space-y-4">
           <li class="flex items-start text-sm text-gray-400 leading-relaxed">
@@ -34,7 +34,7 @@ export function Specs(): string {
         </ul>
       </div>
 
-      <div>
+      <div data-animate-child>
         <h3 class="text-lg font-bold mb-6 tracking-wide text-white border-b border-white/10 pb-3">Library & Data Management</h3>
         <ul class="space-y-4">
           <li class="flex items-start text-sm text-gray-400 leading-relaxed">
@@ -56,7 +56,7 @@ export function Specs(): string {
         </ul>
       </div>
 
-      <div>
+      <div data-animate-child>
         <h3 class="text-lg font-bold mb-6 tracking-wide text-white border-b border-white/10 pb-3">Interface & Interaction</h3>
         <ul class="space-y-4">
           <li class="flex items-start text-sm text-gray-400 leading-relaxed">
@@ -78,7 +78,7 @@ export function Specs(): string {
         </ul>
       </div>
 
-      <div>
+      <div data-animate-child>
         <h3 class="text-lg font-bold mb-6 tracking-wide text-white border-b border-white/10 pb-3">System Architecture</h3>
         <ul class="space-y-4">
           <li class="flex items-start text-sm text-gray-400 leading-relaxed">

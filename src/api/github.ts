@@ -1,3 +1,5 @@
+import { animate, stagger } from "motion";
+
 const REPO_OWNER = "ultraelectronica";
 const REPO_NAME = "Flick";
 
@@ -55,10 +57,10 @@ export async function fetchContributors() {
           html_url: string;
           contributions: number;
         }) => `
-        <a 
-          href="${c.html_url}" 
-          target="_blank" 
-          rel="noopener" 
+        <a
+          href="${c.html_url}"
+          target="_blank"
+          rel="noopener"
           class="group flex flex-col items-center p-4 rounded-2xl border border-transparent hover:bg-[#1A1A1A] hover:border-white/5 transition-all duration-300 hover:-translate-y-1 w-28 sm:w-32 shrink-0"
         >
           <div class="relative mb-3">
@@ -69,17 +71,28 @@ export async function fetchContributors() {
             />
             <div class="absolute inset-0 rounded-full bg-white/0 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 z-0"></div>
           </div>
-          
+
           <span class="text-xs sm:text-sm font-medium text-gray-400 group-hover:text-white transition-colors truncate w-full text-center tracking-tight">
             ${c.login}
           </span>
-          
+
           <span class="text-[9px] sm:text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-1 group-hover:text-gray-500 transition-colors">
             ${c.contributions} commits
           </span>
         </a>`,
       )
       .join("");
+
+    const cards = Array.from(grid.children) as HTMLElement[];
+    cards.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(20px) scale(0.9)";
+    });
+    animate(
+      cards,
+      { opacity: 1, y: 0, scale: 1 },
+      { duration: 0.5, delay: stagger(0.05, { startDelay: 0.1 }), ease: [0.22, 1, 0.36, 1] },
+    );
   } catch {
     // Silently fail
   }

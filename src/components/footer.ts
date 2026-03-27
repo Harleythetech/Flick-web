@@ -5,7 +5,7 @@ export function Footer(): string {
 <section class="bg-[#101010] text-white pt-24 pb-12 relative z-20">
   <div class="max-w-7xl mx-auto px-6 lg:px-16">
     
-    <div class="bg-gradient-to-br from-[#1A1A1A] to-[#111] rounded-[2.5rem] p-10 md:p-16 text-center border border-white/5 relative overflow-hidden shadow-2xl mb-24">
+    <div class="bg-gradient-to-br from-[#1A1A1A] to-[#111] rounded-[2.5rem] p-10 md:p-16 text-center border border-white/5 relative overflow-hidden shadow-2xl mb-24" data-animate="scale-in">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[60%] h-32 bg-white/5 blur-[80px] rounded-full pointer-events-none"></div>
       
       <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
@@ -33,7 +33,7 @@ export function Footer(): string {
       </div>
     </div>
 
-    <footer class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6" data-animate="fade-up" data-animate-delay="0.2">
       
       <div class="flex items-center gap-4">
         <img src="${flicklogo}" alt="Flick Logo" class="h-6 w-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">

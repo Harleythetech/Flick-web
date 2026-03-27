@@ -10,6 +10,11 @@ import {
   fetchLatestCommit,
   fetchContributors,
 } from "./api/github";
+import {
+  initAnimations,
+  initHeroAnimation,
+  initNavbarAnimation,
+} from "./animations";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   ${Navbar()}
@@ -21,6 +26,10 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 `;
 
 initNavbarScroll();
+initNavbarAnimation();
+initHeroAnimation();
+initAnimations();
+
 fetchLatestRelease();
 fetchLatestCommit();
 fetchContributors();
