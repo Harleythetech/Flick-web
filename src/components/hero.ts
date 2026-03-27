@@ -7,10 +7,12 @@ export function Hero(): string {
   <img 
     src="${prodsample2}" 
     alt="Flick Player Interface" 
-    class="absolute bottom-0 right-0 w-full h-[65%] lg:top-0 lg:h-full lg:w-[45%] object-cover object-top lg:object-left-top z-0"
+    class="absolute bottom-0 right-0 w-full h-[65%] lg:top-0 lg:h-full lg:w-[60%] object-cover object-top lg:object-left-top z-0"
   >
 
-  <div class="absolute inset-0 bg-gradient-to-b from-[#101010] via-[#101010]/95 to-transparent lg:hidden z-[5]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#101010] from-[35%] via-[#101010]/80 via-[50%] to-transparent lg:hidden z-[5]"></div>
+
+  <div class="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#101010] from-[40%] via-[#101010]/90 via-[55%] to-transparent z-[5]"></div>
 
   <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-start lg:justify-center pt-[15vh] lg:pt-0 z-10 px-6 md:px-12 lg:px-16">
     
