@@ -20,11 +20,11 @@ export function Hero(): string {
     <div class="w-full lg:w-[50%] max-w-2xl lg:pr-8 xl:pr-12 relative z-10">
       
       <h1 class="text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold text-white mb-4 tracking-tight text-balance leading-tight drop-shadow-xl lg:drop-shadow-none">
-        Built for High Fidelity. <br>Crafted by Audio Enthusiasts.
+        Bit-Perfect Audio. <br>Custom Rust Engine.
       </h1>
       
       <p class="text-base md:text-lg text-gray-300 mb-6 lg:mb-8 text-left lg:text-justify hyphens-auto leading-relaxed drop-shadow-md lg:drop-shadow-none max-w-xl lg:max-w-none">
-        Flick Player is a high-performance music player application built with Flutter and Rust, designed primarily for audiophiles who demand bit-perfect audio playback through external DACs and amplifiers.
+        A high-performance audiophile music player built with Flutter and Rust. Custom UAC&nbsp;2.0 support delivers bit-perfect PCM and native DSD playback through external DACs — with DAP bit-perfect via Oboe/AAudio exclusive mode.
       </p>
 
       <button id="download-btn" class="inline-flex items-center space-x-3 lg:space-x-4 bg-white text-black px-5 py-3 lg:px-6 lg:py-4 rounded-xl hover:bg-gray-200 transition-all active:scale-95 cursor-pointer shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] relative z-10">
