@@ -21,6 +21,8 @@ import {
 
 type AppRoute = "home" | "downloads" | "release-notes";
 
+let releaseRefreshTimer: ReturnType<typeof setInterval> | null = null;
+
 function getCurrentRoute(): AppRoute {
   const hash = window.location.hash.replace(/^#\/?/, "");
   if (hash === "release-notes") return "release-notes";
@@ -44,6 +46,11 @@ function renderDownloadsPage(): string {
 function renderApp(): void {
   const app = document.querySelector<HTMLDivElement>("#app");
   if (!app) return;
+
+  if (releaseRefreshTimer !== null) {
+    clearInterval(releaseRefreshTimer);
+    releaseRefreshTimer = null;
+  }
 
   const route = getCurrentRoute();
   const pageMarkup =
@@ -74,6 +81,9 @@ function renderApp(): void {
   fetchLatestRelease();
 
   if (route === "downloads") {
+    releaseRefreshTimer = setInterval(() => {
+      void fetchLatestRelease();
+    }, 5 * 60 * 1000);
     return;
   }
 
