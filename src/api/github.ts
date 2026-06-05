@@ -3,9 +3,6 @@ import QRCode from "qrcode";
 
 const REPO_OWNER = "ultraelectronica";
 const REPO_NAME = "Flick";
-const LOCKER_REPO_OWNER = "ultraelectronica";
-const LOCKER_REPO_NAME = "Locker";
-const LOCKER_RELEASE_TAG = "v1.4.0";
 const RELEASES_PER_PAGE = 100;
 const MAX_RELEASE_PAGES = 10;
 const QR_CODE_SIZE = 160;
@@ -17,6 +14,8 @@ const DAY_IN_MS = 24 * 60 * 60 * 1000;
 const API_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 const CONTRIBUTOR_STATS_RETRY_MS = 700;
 const DISCLOSURE_EASE = [0.22, 1, 0.36, 1] as const;
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.mossapps.flick";
 
 async function githubApiFetch(path: string, qs?: string): Promise<Response> {
   const params = new URLSearchParams({ path });
@@ -336,15 +335,11 @@ function getReleaseDownloadTotal(release: GitHubRelease): number {
   }, 0);
 }
 
-function getReleaseDownloadUrl(
-  release: GitHubRelease,
-  owner = REPO_OWNER,
-  repo = REPO_NAME,
-): string {
+function getReleaseDownloadUrl(release: GitHubRelease): string {
   const apkAsset = release.assets?.find((asset) => asset.name.endsWith(".apk"));
   const url = apkAsset?.browser_download_url;
   if (url && isGitHubUrl(url)) return url;
-  return getRepositoryReleasePageUrl(owner, repo, release.tag_name);
+  return PLAY_STORE_URL;
 }
 
 function getReleasePublishedTimestamp(release: GitHubRelease): number {
@@ -1841,13 +1836,6 @@ export async function fetchLatestRelease() {
   renderContributorCount();
   renderRepositoryStars();
 
-  const flickFallbackUrl = getReleasePageUrl();
-  const lockerFallbackUrl = getRepositoryReleasePageUrl(
-    LOCKER_REPO_OWNER,
-    LOCKER_REPO_NAME,
-    LOCKER_RELEASE_TAG,
-  );
-
   const renderFlickDownloadState = (
     versionLabel: string,
     downloadUrl: string,
@@ -1865,39 +1853,23 @@ export async function fetchLatestRelease() {
     );
   };
 
-  const renderLockerDownloadState = (
-    versionLabel: string,
-    downloadUrl: string,
-    sizeLabel: string,
-  ): void => {
-    setTextContent("locker-version-tag", versionLabel);
-    setTextContent("locker-size-tag", sizeLabel);
-    bindDownloadButton("locker-download-btn", downloadUrl);
-    void renderDownloadQrCode(
-      "locker-qr-code",
-      downloadUrl,
-      `Scan to download Locker (${versionLabel})`,
-    );
-  };
+  bindDownloadButton("playstore-download-btn", PLAY_STORE_URL);
+  void renderDownloadQrCode(
+    "playstore-qr-code",
+    PLAY_STORE_URL,
+    "Scan to open Flick on the Play Store",
+  );
 
   renderFlickDownloadState(
     "Latest release on GitHub",
-    flickFallbackUrl,
-    "Size pending",
-  );
-  renderLockerDownloadState(
-    `${LOCKER_RELEASE_TAG} • Android APK`,
-    lockerFallbackUrl,
+    PLAY_STORE_URL,
     "Size pending",
   );
 
   try {
-    const [releases, repositoryInfo, lockerReleases] = await Promise.all([
+    const [releases, repositoryInfo] = await Promise.all([
       fetchPublishedReleases().catch(() => null),
       fetchRepositoryInfo().catch(() => null),
-      fetchPublishedReleasesForRepo(LOCKER_REPO_OWNER, LOCKER_REPO_NAME).catch(
-        () => null,
-      ),
     ]);
 
     renderRepositoryStars(repositoryInfo?.stargazers_count);
@@ -1911,21 +1883,6 @@ export async function fetchLatestRelease() {
         `v${latestRelease.tag_name} • Android APK`,
         getReleaseDownloadUrl(latestRelease),
         formatReleaseAssetSize(getPrimaryReleaseAsset(latestRelease)?.size),
-      );
-    }
-
-    const lockerRelease = lockerReleases
-      ? getPreferredRelease(lockerReleases, LOCKER_RELEASE_TAG)
-      : null;
-    if (lockerRelease) {
-      renderLockerDownloadState(
-        `${lockerRelease.tag_name} • Android APK`,
-        getReleaseDownloadUrl(
-          lockerRelease,
-          LOCKER_REPO_OWNER,
-          LOCKER_REPO_NAME,
-        ),
-        formatReleaseAssetSize(getPrimaryReleaseAsset(lockerRelease)?.size),
       );
     }
   } catch {
