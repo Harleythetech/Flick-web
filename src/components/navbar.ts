@@ -1,4 +1,4 @@
-import flicklogo from "../assets/flicklogo_transparent.png";
+import flicklogo from "../assets/flick_logo.svg";
 
 let hasBoundNavbarScroll = false;
 

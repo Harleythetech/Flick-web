@@ -1,4 +1,4 @@
-import flicklogo from "../assets/flicklogo_transparent.png";
+import flicklogo from "../assets/flick_logo.svg";
 
 export function Footer(
   currentRoute: "home" | "downloads" | "release-notes" = "home",
@@ -31,7 +31,7 @@ export function Footer(
         </h2>
         
         <p class="text-gray-400 text-lg md:text-xl mb-10 leading-relaxed text-balance">
-          Flick Player is built out in the open. Inspect the Rust audio engine, contribute new features, report issues, or compile it yourself.
+          Flick Player is fully open source — no premium features, no ads, no paid components. Inspect the Rust audio engine, contribute, or compile it yourself.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
